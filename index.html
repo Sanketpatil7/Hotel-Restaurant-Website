@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Spice Route — Premium Indian Restaurant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo" onclick="scrollToSection('hero')">🍛 <span>Spice</span>Route</div>
+  <ul class="nav-links">
+    <li><a onclick="scrollToSection('hero')">Home</a></li>
+    <li><a onclick="scrollToSection('menu')">Menu</a></li>
+    <li><a onclick="scrollToSection('specials')">Specials</a></li>
+    <li><a onclick="scrollToSection('offers')">Offers</a></li>
+    <li><a onclick="scrollToSection('booking')">Reserve</a></li>
+    <li><a onclick="scrollToSection('contact')">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle theme">🌙</button>
+    <button class="cart-btn" onclick="toggleCart()" title="Cart">
+      🛒
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+  <div class="hamburger" onclick="toggleMobile()" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="scrollToSection('hero');toggleMobile()">Home</a>
+  <a onclick="scrollToSection('menu');toggleMobile()">Menu</a>
+  <a onclick="scrollToSection('specials');toggleMobile()">Specials</a>
+  <a onclick="scrollToSection('offers');toggleMobile()">Offers</a>
+  <a onclick="scrollToSection('booking');toggleMobile()">Reserve Table</a>
+  <a onclick="scrollToSection('reviews');toggleMobile()">Reviews</a>
+  <a onclick="scrollToSection('contact');toggleMobile()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-tag">⭐ Awarded Best Indian Restaurant 2024</div>
+      <h1 class="hero-title">Where Every Bite<br>Tells a <em>Story</em></h1>
+      <p class="hero-sub">Authentic Indian flavors crafted with love and tradition. From street food to royal delicacies — a journey through India on every plate.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="scrollToSection('menu')">Explore Menu</button>
+        <button class="btn-secondary" onclick="scrollToSection('booking')">Book a Table</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">40+</div><div class="stat-label">Dishes</div></div>
+        <div class="stat"><div class="stat-num">4.9★</div><div class="stat-label">Rating</div></div>
+        <div class="stat"><div class="stat-num">8K+</div><div class="stat-label">Orders</div></div>
+        <div class="stat"><div class="stat-num">15+</div><div class="stat-label">Years</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-dish-ring">
+        <div class="ring-outer"></div>
+        <div class="ring-mid"></div>
+        <div class="dish-main">
+          <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=500&q=80" alt="Biryani"/>
+        </div>
+        <div class="dish-float">
+          <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=200&q=80" alt=""/>
+        </div>
+        <div class="dish-float">
+          <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=200&q=80" alt=""/>
+        </div>
+        <div class="dish-float">
+          <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=200&q=80" alt=""/>
+        </div>
+        <div class="dish-float">
+          <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=200&q=80" alt=""/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER BANNER -->
+<div class="offer-banner">
+  <div class="offer-track" id="offerTrack"></div>
+  <div class="offer-track" id="offerTrack2" aria-hidden="true"></div>
+</div>
+
+<!-- MENU — TASK 3: food cards generated dynamically into #foodGrid -->
+<section id="menu">
+  <div class="section-header reveal">
+    <div class="section-label">Our Menu</div>
+    <h2 class="section-title">Explore <em>Flavours</em></h2>
+    <p class="section-sub">Handcrafted with the finest spices and freshest ingredients, every dish is a masterpiece.</p>
+  </div>
+  <div class="search-wrap reveal">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Search biryani, paneer, momos…"/>
+  </div>
+  <div class="filter-row reveal" id="filterRow"></div>
+  <div class="cat-grid reveal" id="catGrid"></div>
+  <!-- TASK 3: dynamic food cards rendered here by script.js -->
+  <div class="food-grid" id="foodGrid"></div>
+</section>
+
+<!-- SPECIALS -->
+<section id="specials">
+  <div class="section-header reveal">
+    <div class="section-label">Featured</div>
+    <h2 class="section-title">Chef's <em>Specials</em></h2>
+  </div>
+  <div class="specials-tabs" id="specTabs"></div>
+  <div class="specials-grid" id="specialsGrid"></div>
+</section>
+
+<!-- OFFERS -->
+<section id="offers">
+  <div class="section-header reveal">
+    <div class="section-label">Deals</div>
+    <h2 class="section-title">Today's <em>Offers</em></h2>
+  </div>
+  <div class="offers-grid" id="offersGrid"></div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <div class="booking-grid">
+    <div class="booking-info reveal">
+      <div class="section-label">Reservations</div>
+      <h2 class="section-title">Reserve Your <em>Table</em></h2>
+      <p>Join us for an unforgettable dining experience. Our warm ambience, impeccable service, and exquisite cuisine await you.</p>
+      <div class="booking-feat">
+        <div class="feat-item"><div class="feat-icon">🕐</div><div class="feat-text">Open daily 11AM – 11PM</div></div>
+        <div class="feat-item"><div class="feat-icon">🏆</div><div class="feat-text">Award-winning chefs with 15+ years experience</div></div>
+        <div class="feat-item"><div class="feat-icon">🌿</div><div class="feat-text">Fresh locally sourced premium ingredients</div></div>
+        <div class="feat-item"><div class="feat-icon">🍾</div><div class="feat-text">Private dining rooms available</div></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="booking-form">
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin-bottom:1.5rem;">Make a Reservation</h3>
+        <div class="form-grid">
+          <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your name"/></div>
+          <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com"/></div>
+          <div class="form-group"><label>Phone</label><input type="tel" placeholder="+91 98765 43210"/></div>
+          <div class="form-group"><label>Guests</label>
+            <select>
+              <option>1 Person</option><option>2 People</option><option selected>4 People</option>
+              <option>6 People</option><option>8+ People</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Date</label><input type="date"/></div>
+          <div class="form-group"><label>Time</label>
+            <select>
+              <option>11:00 AM</option><option>12:00 PM</option><option>1:00 PM</option>
+              <option selected>7:00 PM</option><option>8:00 PM</option><option>9:00 PM</option>
+            </select>
+          </div>
+          <div class="form-group full"><label>Special Requests</label><input type="text" placeholder="Dietary requirements, occasion…"/></div>
+        </div>
+        <button class="btn-primary" style="width:100%;padding:1rem;" onclick="showToast('Table reserved! We\'ll confirm via email. 🎉','success')">Confirm Reservation</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-header reveal">
+    <div class="section-label">Testimonials</div>
+    <h2 class="section-title">What Guests <em>Say</em></h2>
+  </div>
+  <div class="review-stats reveal" id="reviewStats"></div>
+  <div class="reviews-grid reveal" id="reviewsGrid"></div>
+  <div class="review-form reveal" id="reviewFormEl">
+    <h3>Share Your Experience</h3>
+    <div style="margin-bottom:.8rem;font-size:.85rem;color:var(--text2);">Your rating</div>
+    <div class="star-select" id="starSelect">
+      <span onclick="selectStar(1)">☆</span><span onclick="selectStar(2)">☆</span>
+      <span onclick="selectStar(3)">☆</span><span onclick="selectStar(4)">☆</span>
+      <span onclick="selectStar(5)">☆</span>
+    </div>
+    <input type="text" id="reviewName" placeholder="Your name" style="width:100%;background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;color:var(--text);padding:.8rem 1rem;font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;margin-bottom:1rem;"/>
+    <textarea id="reviewText" placeholder="Tell us about your experience…"></textarea>
+    <button class="btn-primary" style="margin-top:1rem;" onclick="submitReview()">Submit Review</button>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="section-label">Find Us</div>
+      <h2 class="section-title" style="margin-bottom:2rem;">Visit <em>Us</em></h2>
+      <div class="contact-info" id="contactInfo"></div>
+    </div>
+    <div class="reveal">
+      <div class="map-placeholder">📍 123 Spice Lane, Bandra, Mumbai 400050</div>
+      <div style="margin-top:1.5rem;">
+        <h4 style="font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:1rem;">Opening Hours</h4>
+        <div id="hoursGrid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">🍛 SpiceRoute</div>
+      <p class="footer-desc">Authentic Indian cuisine crafted with passion, tradition, and the finest ingredients. A culinary journey through the heart of India.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Menu</h4>
+      <a onclick="scrollToSection('menu')">Indian Food</a>
+      <a onclick="scrollToSection('menu')">Fast Food</a>
+      <a onclick="scrollToSection('menu')">Desserts</a>
+      <a onclick="scrollToSection('menu')">Beverages</a>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a onclick="scrollToSection('specials')">Chef's Special</a>
+      <a onclick="scrollToSection('offers')">Today's Offers</a>
+      <a onclick="scrollToSection('booking')">Reserve Table</a>
+      <a onclick="scrollToSection('reviews')">Reviews</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a>+91 98765 43210</a>
+      <a>hello@spiceroute.in</a>
+      <a>123 Spice Lane, Bandra</a>
+      <a>Mumbai, 400050</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2024 SpiceRoute. Made with ❤️ in Mumbai</div>
+    <div class="social-links">
+      <a class="social-link" title="Instagram">📸</a>
+      <a class="social-link" title="Facebook">👍</a>
+      <a class="social-link" title="Twitter">🐦</a>
+      <a class="social-link" title="YouTube">▶️</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-grid" id="modalGrid"></div>
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <div class="cart-title">Your Cart 🛒</div>
+    <button class="cart-close" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot" id="cartFoot"></div>
+</div>
+
+<!-- TOAST -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- TASK 2: foodData.js MUST load before script.js -->
+<script src="foodData.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
