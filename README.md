@@ -1,4 +1,4 @@
-<h1>#  Hotel & Restaurant Website<\h1>
+<h2>Hotel & Restaurant Website</h2>
 <h3>Responsive restaurant website built using HTML, CSS and JavaScript...<\h3>
 
 A modern and responsive **Hotel & Restaurant Website** built using **HTML, CSS, and JavaScript**.
